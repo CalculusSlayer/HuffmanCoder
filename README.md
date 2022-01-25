@@ -3,8 +3,8 @@
 This project implements the huffman coding algorithms. It
 is used for the purposes of file compression. There are two
 separate programs that can either encode or decode an input file.
-The encoding file takes the input file and encodes it using a binary
-tree and various other techniques. The decoding file can take an
+The encoding executable takes the input file and encodes it using a binary
+tree and various other techniques. The decoding executable can take an
 encoded file and turn it back into the original text.
 
 ## Building 
