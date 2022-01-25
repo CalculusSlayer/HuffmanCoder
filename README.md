@@ -1,11 +1,11 @@
-# Assignment 5 - Huffman Coding
+# Huffman Coding
 
-This assignment implements the huffman coding algorithms. It
+This project implements the huffman coding algorithms. It
 is used for the purposes of file compression. There are two
 separate programs that can either encode or decode an input file.
 The encoding file takes the input file and encodes it using a binary
 tree and various other techniques. The decoding file can take an
-encoded file and turn it back into the same text.
+encoded file and turn it back into the original text.
 
 ## Building 
 
@@ -26,6 +26,11 @@ Build just decode with:
 ```
 make decode
 ```
+
+Note: The makefile assumes the user has a clang compiler
+installed on their system. In the makefile, one can change
+the compiler type where it says "CC = clang" to 
+"CC = gcc" if they have gcc installed on their system.
 
 ## Running
 
