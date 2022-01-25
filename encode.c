@@ -26,20 +26,24 @@ int main(int argc, char **argv) {
     int infile = STDIN_FILENO; // standard input stream
     int outfile = STDOUT_FILENO; // standard output stream
     int opt = 0;
+
     while ((opt = getopt(argc, argv, OPTIONS)) != -1) {
         no_input = false;
         switch (opt) {
+
         case 'h': h_flag = true; break;
         case 'v': v_flag = true; break;
+
         case 'i':
-            infile = open(optarg, O_RDONLY); //From TA Erik
+            infile = open(optarg, O_RDONLY); 
             if (infile == -1) {
                 fprintf(stderr, "Infile error");
                 exit(EXIT_FAILURE);
             }
             break;
+
         case 'o':
-            outfile = open(optarg, O_WRONLY | O_CREAT | O_TRUNC); // From TA Erik
+            outfile = open(optarg, O_WRONLY | O_CREAT | O_TRUNC); 
             if (outfile == -1) {
                 fprintf(stderr, "Outfile error");
                 exit(EXIT_FAILURE);
@@ -47,6 +51,7 @@ int main(int argc, char **argv) {
             break;
         }
     }
+
     // Standard Error Message if h flag is raised
     if (h_flag == true) {
         printf("SYNOPSIS\n");
@@ -61,7 +66,9 @@ int main(int argc, char **argv) {
         printf("  -v            Print compression statistics.\n");
         printf("  -i infile     Input file to compress.\n");
         printf("  -o outfile    Output of compressed data.\n");
-    } else {
+    } 
+
+    else {
         // Steps 1-2 Making and initializing histogram
         // Increment first and last symbol by 1.
         uint64_t histogram[ALPHABET] = { 0 };
@@ -90,7 +97,7 @@ int main(int argc, char **argv) {
         struct stat statbuff;
         fstat(infile, &statbuff);
 
-        // Step 5 Making a header // Header code from TA Erik
+        // Step 5 Making a header 
         fchmod(outfile, statbuff.st_mode); // file permissions
         Header h = { 0, 0, 0, 0 };
         h.magic = MAGIC;

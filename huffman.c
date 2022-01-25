@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include "stack.h"
 
-// Cite: TA Eric
 void help_code(Code c, Node *root, Code table[static ALPHABET]) {
     uint8_t random = 0;
     if (root) {
@@ -28,7 +27,6 @@ void help_code(Code c, Node *root, Code table[static ALPHABET]) {
     return;
 }
 
-// Cite: TA Eric
 Node *build_tree(uint64_t hist[static ALPHABET]) {
     PriorityQueue *huffman_q = pq_create(ALPHABET);
     for (uint64_t count = 0; count < ALPHABET; count++) {
@@ -50,7 +48,6 @@ Node *build_tree(uint64_t hist[static ALPHABET]) {
     return root;
 }
 
-// Cite: TA Eric
 void build_codes(Node *root, Code table[static ALPHABET]) {
     Code c = code_init();
     help_code(c, root, table);
@@ -95,7 +92,6 @@ Node *rebuild_tree(uint16_t nbytes, uint8_t tree_dump[static nbytes]) {
     return root_return;
 }
 
-// Cite: TA Eugene
 void delete_tree(Node **root) {
     if (*root) {
         delete_tree(&(*root)->left);

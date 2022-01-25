@@ -12,20 +12,9 @@ static uint32_t write_bit_top = 0;
 
 static int read_index = 0;
 static uint8_t read_buffer[BLOCK];
+
 // Function to read n number of bytes from infile.
-// Cite: TA Christian
 int read_bytes(int infile, uint8_t *buf, int nbytes) {
-    /*
-	int bytes = -1;
-	int total_bytes = 0;
-	while ((total_bytes != nbytes) && (bytes != 0)) {
-		bytes = read(infile, buf, nbytes);
-		total_bytes += bytes;
-		buf += bytes;
-	}
-	bytes_read += total_bytes;
-	return total_bytes;
-	*/
     if (nbytes == 0) {
         return 0;
     }
@@ -42,19 +31,7 @@ int read_bytes(int infile, uint8_t *buf, int nbytes) {
 }
 
 // Function to write n number of bytes to outfile.
-// Cite: TA Christian
 int write_bytes(int outfile, uint8_t *buf, int nbytes) {
-    /*
-	int bytes = -1;
-	int total_bytes = 0;
-	while ((total_bytes != nbytes) && (bytes != 0)) {
-		bytes = write(outfile, buf, nbytes);
-		total_bytes += bytes;
-		buf += bytes;
-	}
-	bytes_written += total_bytes;
-	return total_bytes;
-	*/
     if (nbytes == 0) {
         return 0;
     }
@@ -71,7 +48,6 @@ int write_bytes(int outfile, uint8_t *buf, int nbytes) {
 }
 
 // Function to read a single bit using bitwise operations.
-// Cite: TA Eugene
 bool read_bit(int infile, uint8_t *bit) {
     static int end = -1;
     if (read_index == 0) {
@@ -95,7 +71,6 @@ bool read_bit(int infile, uint8_t *bit) {
 }
 
 // Function to write bits from code to outfile
-// Cite: TA Eugene
 void write_code(int outfile, Code *c) {
 
     uint8_t bit = 0;

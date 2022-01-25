@@ -1,4 +1,3 @@
-#
 EXEC1 = encode
 EXEC2 = decode
 #SOURCES = $(wildcard *.c)

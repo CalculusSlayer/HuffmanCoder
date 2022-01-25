@@ -10,7 +10,6 @@ struct Stack {
     Node **items;
 };
 
-// Code for function below borrowed from Prof. Long
 Stack *stack_create(uint32_t capacity) {
     Stack *s = (Stack *) malloc(sizeof(Stack));
     if (s) {
@@ -25,7 +24,6 @@ Stack *stack_create(uint32_t capacity) {
     return s;
 }
 
-// Code for function below borrowed from Prof. Long
 void stack_delete(Stack **s) {
     if (*s && (*s)->items) {
         free((*s)->items);
@@ -75,7 +73,6 @@ bool stack_pop(Stack *s, Node **n) {
     }
 }
 
-// The code below is borrowed from Prof. Long.
 void stack_print(Stack *s) {
     for (uint32_t i = 0; i < s->top; i += 1) {
         printf("%" PRIu32 "\n", i);

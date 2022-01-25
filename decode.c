@@ -26,20 +26,21 @@ int main(int argc, char **argv) {
     int infile = STDIN_FILENO;
     int outfile = STDOUT_FILENO;
     int opt = 0;
+
     while ((opt = getopt(argc, argv, OPTIONS)) != -1) {
         no_input = false;
         switch (opt) {
         case 'h': h_flag = true; break;
         case 'v': v_flag = true; break;
         case 'i':
-            infile = open(optarg, O_RDONLY); // From TA Erik
+            infile = open(optarg, O_RDONLY);
             if (infile == -1) {
                 fprintf(stderr, "Infile error");
                 exit(EXIT_FAILURE);
             }
             break;
         case 'o':
-            outfile = open(optarg, O_WRONLY | O_CREAT | O_TRUNC); // From TA Erik
+            outfile = open(optarg, O_WRONLY | O_CREAT | O_TRUNC); 
             if (outfile == -1) {
                 fprintf(stderr, "Outfile error");
                 exit(EXIT_FAILURE);
@@ -47,6 +48,7 @@ int main(int argc, char **argv) {
             break;
         }
     }
+
     // If -h flag is raised print help message.
     if (h_flag == true) {
         printf("SYNOPSIS\n");
@@ -63,7 +65,6 @@ int main(int argc, char **argv) {
         printf("  -o outfile     Output of decompressed data.\n");
     } else {
         // Step 1 Read header from infile
-        // Header operations from TA Erik
         Header h = { 0, 0, 0, 0 };
         read_bytes(infile, (uint8_t *) &h, sizeof(h));
         if (h.magic != MAGIC) {
@@ -83,8 +84,7 @@ int main(int argc, char **argv) {
         uint64_t a = 0;
         uint8_t bit = 0;
 
-        // Step 4
-        // Cite: Inspired by Professor Long - Tree Walk algoirthm on discord
+        // Step 4 Tree Walk Algorithm
         while (a < h.file_size) {
             read_bit(infile, &bit);
             if (bit == 0) {

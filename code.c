@@ -1,7 +1,6 @@
 #include "code.h"
 #include "defines.h"
 
-// From TA Christian
 Code code_init(void) {
     Code c = { .top = 0, .bits = { 0 } };
     return c;
