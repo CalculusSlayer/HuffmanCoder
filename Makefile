@@ -1,46 +1,47 @@
 EXEC1 = encode
 EXEC2 = decode
-#SOURCES = $(wildcard *.c)
-OBJECTS = encode.o decode.o node.o pq.o code.o io.o stack.o huffman.o
+
+OBJECTS1 = encode.o node.o pq.o code.o io.o stack.o huffman.o
+OBJECTS2 = decode.o node.o pq.o code.o io.o stack.o huffman.o
 
 CC = clang
 CFLAGS = -Wall -Wextra -Wpedantic -Werror -O2
 LDFLAGS = -lm
 
-all: encode decode
+all: $(EXEC1) $(EXEC2)
 
-encode: encode.o node.o pq.o code.o io.o stack.o huffman.o header.h
-	$(CC) encode.o node.o pq.o code.o io.o stack.o huffman.o -o encode $(LDFLAGS)
+$(EXEC1): encode.o node.o pq.o code.o io.o stack.o huffman.o
+	$(CC) $(OBJECTS1) -o $(EXEC1) $(LDFLAGS)
 
-decode: decode.o node.o pq.o code.o io.o stack.o huffman.o header.h
-	$(CC) decode.o node.o pq.o code.o io.o stack.o huffman.o -o decode $(LDFLAGS)
+$(EXEC2): decode.o node.o pq.o code.o io.o stack.o huffman.o
+	$(CC) $(OBJECTS2) -o $(EXEC2) $(LDFLAGS)
 
-encode.o: encode.c node.o pq.o code.o io.o stack.o huffman.o
+encode.o: encode.c defines.h stack.h io.h pq.h node.h huffman.h header.h
 	$(CC) $(CFLAGS) -c encode.c
 
-decode.o: decode.c node.o pq.o code.o io.o stack.o huffman.o
+decode.o: decode.c defines.h stack.h io.h pq.h node.h huffman.h header.h
 	$(CC) $(CFLAGS) -c decode.c
 
-node.o: node.c node.h
+node.o: node.c node.h 
 	$(CC) $(CFLAGS) -c node.c
 
-pq.o: pq.c pq.h node.c node.h
+pq.o: pq.c pq.h node.h
 	$(CC) $(CFLAGS) -c pq.c
 
 code.o: code.c code.h defines.h
 	$(CC) $(CFLAGS) -c code.c
 
-io.o: io.c io.h 
+io.o: io.c io.h code.h 
 	$(CC) $(CFLAGS) -c io.c
 
-stack.o: stack.c stack.h node.c node.h 
+stack.o: stack.c stack.h node.h 
 	$(CC) $(CFLAGS) -c stack.c
 
-huffman.o: huffman.c huffman.h defines.h node.c pq.c code.c io.c stack.c
+huffman.o: huffman.c huffman.h defines.h pq.h node.h io.h stack.h code.h
 	$(CC) $(CFLAGS) -c huffman.c
 
 clean:
-	rm -rf $(EXEC1) $(EXEC2) $(OBJECTS)
+	rm -rf $(EXEC1) $(EXEC2) $(OBJECTS1) $(EXEC2).o 
 
 format:
 	clang-format -i -style=file *.[c,h]

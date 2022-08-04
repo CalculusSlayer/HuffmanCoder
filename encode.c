@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
         }
         // Step 3 Making tree from histogram
         Node *root21 = build_tree(histogram);
-        Code table[ALPHABET] = { 0 };
+        Code table[ALPHABET] = { {0} };
         for (int count = 0; count < ALPHABET; count++) {
             if (histogram[count] > 0) {
                 unique_syms++;
